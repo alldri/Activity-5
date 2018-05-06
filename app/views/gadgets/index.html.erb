@@ -1,0 +1,72 @@
+<style>
+#gadgets {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#gadgets td, #gadgets th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#gadgets tr:nth-child(even){background-color: #f2f2f2;}
+
+#gadgets tr:hover {background-color: #ddd;}
+
+#gadgets th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+<p id="notice"><%= notice %></p>
+
+<h1>Android nang Bayan Inc.</h1>
+
+<table id="gadgets">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Brand</th>
+      <th>Year released</th>
+      <th>Camera</th>
+      <th>Mpixels</th>
+      <th>Internal storage</th>
+      <th>Sim slots</th>
+      <th>Screen size</th>
+      <th>Os</th>
+      <th>Num in stock</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gadgets.each do |gadget| %>
+      <tr>
+        <% if gadget.num_in_stock != 0 %>
+        <td><%= gadget.name %></td>
+        <td><%= gadget.brand %></td>
+        <td><%= gadget.year_released %></td>
+        <td><%= gadget.camera %></td>
+        <td><%= gadget.mpixels %></td>
+        <td><%= gadget.internal_storage %></td>
+        <td><%= gadget.sim_slots %></td>
+        <td><%= gadget.screen_size %></td>
+        <td><%= gadget.os %></td>
+        <td><%= gadget.num_in_stock %></td>
+        <td><a href="http://localhost:3000/gadgets/decrease_stock/<%= gadget.id%>">Sold one</a></td>
+        <td><%= link_to 'Show', gadget %></td>
+        <td><%= link_to 'Edit', edit_gadget_path(gadget) %></td>
+        <td><%= link_to 'Destroy', gadget, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%  end  %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gadget', new_gadget_path %>
